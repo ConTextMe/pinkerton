@@ -8,13 +8,15 @@ from pinkerton.settings import DATA_PROVIDER_CLIENT_HEADERS
 class EntityExtractor:
 
     '''
-    Providers API to Natasha playground
+    Provides API to Natasha playground
     '''
 
     ENTITIES_CONVERT_MAP = {
         'person': EntityType.Person,
         'organisation': EntityType.Organisation,
         'location': EntityType.Location,
+        'street': EntityType.Location,
+        'address': EntityType.Address,
     }
 
     def __init__(self, api_base_url: str):

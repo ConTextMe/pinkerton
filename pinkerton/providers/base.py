@@ -21,4 +21,7 @@ class BaseDataProvider:
         '''
         Returns true if data provider can return information about given entity
         '''
-        return entity.type in self.ALLOWED_ENTITY_TYPES
+        entity_type = (
+            getattr(entity, 'type', None) or entity.get('type', None)
+        )
+        return entity_type in self.ALLOWED_ENTITY_TYPES

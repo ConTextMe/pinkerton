@@ -42,3 +42,7 @@ def tokenize(text):
     return list(
         normalize(tokens)
     )
+
+def serialize_object(obj):
+    obj['type'] = obj['type'].value
+    return obj
