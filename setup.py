@@ -6,6 +6,7 @@ REQUIREMENTS = [
     'pymorphy2[fast]==0.8',
     'gensim==2.0.0',
     'regex>=2017.4.29',
+    'b-labs-models>=2017.8.19',
 ]
 
 setup(

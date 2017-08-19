@@ -1,9 +1,11 @@
 import regex as re
 import pymorphy2
 import unicodedata
+import b_labs_models as models
 
 
 morph = pymorphy2.MorphAnalyzer()
+tokenizer = models.Tokenizer()
 
 
 def remove_unnecessary_chars(string):
@@ -30,18 +32,15 @@ def normalize(tokens, analyzer=morph):
 
 
 def tokenize(text):
-    '''
-    Simple tokenizer that extracts only words and numbers (of length 3 and more) from given text
-    '''
-    tokens = (
-        match.group(0) for match in re.finditer(r'\w{3,}', text, re.UNICODE)
-    )
+    tokens = tokenizer.tokenize(text)
+    tokens = (token for token in tokens if len(token) >= 3)
     tokens = (
         remove_unnecessary_chars(token.lower()) for token in tokens
     )
     return list(
         normalize(tokens)
     )
+
 
 def serialize_object(obj):
     obj['type'] = obj['type'].value
